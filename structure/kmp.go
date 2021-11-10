@@ -1,0 +1,5 @@
+package structure
+
+func main() {
+
+}
