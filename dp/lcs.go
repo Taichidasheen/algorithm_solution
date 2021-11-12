@@ -2,6 +2,10 @@ package dp
 
 import "fmt"
 
+/*
+lc-1143:https://leetcode.com/problems/longest-common-subsequence/
+ */
+
 //使用迭代方法
 func longestCommonSubsequence(text1 string, text2 string) int {
 	//初始化数组
@@ -27,12 +31,4 @@ func longestCommonSubsequence(text1 string, text2 string) int {
 		}
 	}
 	return dp[len1][len2]
-}
-
-func max(a, b int) int {
-	if a >= b {
-		return a
-	} else {
-		return b
-	}
 }
