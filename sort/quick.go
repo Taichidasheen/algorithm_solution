@@ -19,6 +19,7 @@ func partition(arr []int, left, right int) int {
 	fmt.Printf("input arr:%+v, left:%d, right:%d\n", arr, left, right)
 	pivot := left
 	for right > left {
+		//注意：这里需要加上等于的条件，不然可能会陷入死循环，防止基准值在第一次替换操作中被替换
 		if arr[right] >= arr[pivot]{
 			right--
 			continue
@@ -28,17 +29,17 @@ func partition(arr []int, left, right int) int {
 				left++
 				continue
 			}
-			//swap right left
+			//swap right left（第一次替换操作）
 			temp := arr[left]
 			arr[left] = arr[right]
 			arr[right] = temp
 			fmt.Printf("mid arr:%+v, left:%d, right:%d\n", arr, left, right)
-			//注意这里右边要先移动一下
+			//下面这行是不必要的
 			//right--
 			break
 		}
 	}
-	//swap pivot
+	//swap pivot（第二次替换操作）
 	temp := arr[left]
 	arr[left] = arr[pivot]
 	arr[pivot] = temp
@@ -50,7 +51,7 @@ func partitionV2(arr []int, left, right int) int {
 	fmt.Printf("input arr:%+v, left:%d, right:%d\n", arr, left, right)
 	pivot := left
 	for right > left {
-
+		//注意：这里需要加上等于的条件，不然可能会陷入死循环
 		for right > left && arr[right] >= arr[pivot] {
 			right--
 		}
