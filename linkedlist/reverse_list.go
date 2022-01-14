@@ -26,9 +26,35 @@ func recursiveReverseLinkedList(node *ListNode) *ListNode {
 	return head
 }
 
-//reverseLinkedListTopN 反转链表前N个节点
-func reverseLinkedListTopN(node *ListNode, topN int32) *ListNode {
-	return nil
 
+var successor *ListNode
+//reverseListRecursionTopN 递归方式反转链表前N个节点
+func reverseListRecursionTopN(node *ListNode, topN int64) *ListNode {
+	if topN == 1 {
+		successor = node.Next
+		return node
+	}
+	//head指向反转链表的头节点
+	head := reverseListRecursionTopN(node.Next, topN-1)
+	node.Next.Next = node
+	node.Next = successor
+	return head
 }
 
+//reverseListRecursionBetween 递归方式反转链表a-b区间的节点
+func reverseListRecursionBetween(node *ListNode, a int64, b int64) *ListNode {
+
+	if a == 1 {
+		return reverseListRecursionTopN(node, b)
+	}
+	halfTail := node
+	i := a
+	for i > 2 {
+		halfTail = node.Next
+		i = i - 1
+	}
+	//head指向反转链表的头节点
+	head := reverseListRecursionTopN(halfTail.Next, b-a+1)
+	halfTail.Next = head
+	return node
+}

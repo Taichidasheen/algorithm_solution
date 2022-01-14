@@ -4,9 +4,8 @@ package heap
  堆的相关知识可以参考：
 https://my.oschina.net/xinxingegeya/blog/703801
 https://my.oschina.net/xinxingegeya/blog/705409
-
+下面实现的是一个小顶堆
  */
-
 type Heap struct {
 	nodes []int
 	size int
@@ -20,6 +19,7 @@ func NewHeap() *Heap {
 }
 
 func (h *Heap) Init() {
+	//注意：这里只需要调整有子节点的节点即可，而最后一个有子节点的节点就是h.size/2
 	for i:=h.size/2;i>=1;i-- {
 		h.down(i)
 	}
@@ -76,20 +76,20 @@ func(h *Heap) down(i int) {
 		if left > h.size {
 			break
 		}
-		var smaller int
+		var smallerIdx int
 		right := pa*2 + 1
 		if right > h.size {
-			smaller = left
+			smallerIdx = left
 		} else {
 			if h.nodes[left] < h.nodes[right] {
-				smaller = left
+				smallerIdx = left
 			} else {
-				smaller = right
+				smallerIdx = right
 			}
 		}
-		if h.nodes[pa] > h.nodes[smaller] {
-			h.swap(pa, smaller)
-			pa = smaller
+		if h.nodes[pa] > h.nodes[smallerIdx] {
+			h.swap(pa, smallerIdx)
+			pa = smallerIdx
 		} else {
 			break
 		}

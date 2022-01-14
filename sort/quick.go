@@ -2,6 +2,11 @@ package sort
 
 import "fmt"
 
+/*
+参考链接：
+ 1. https://wiki.jikexueyuan.com/project/easy-learn-algorithm/fast-sort.html 算法思路
+ 2. https://www.runoob.com/w3cnote/quick-sort-2.html C++版最简洁，对应partitionV2
+ */
 func quickSort(arr []int) []int {
 	return _quickSort(arr, 0, len(arr)-1)
 }
@@ -29,7 +34,7 @@ func partition(arr []int, left, right int) int {
 				left++
 				continue
 			}
-			//swap right left（第一次替换操作）
+			//swap right left（第一波替换操作）
 			temp := arr[left]
 			arr[left] = arr[right]
 			arr[right] = temp
