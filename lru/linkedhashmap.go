@@ -39,9 +39,11 @@ func (m *LinkedHashMap) Put(key, val int) {
 			Value: val,
 		}
 		if len(m.hash)>=m.size {
-			delete(m.hash, key)
-			m.list.PopFront()
+			front := m.list.PopFront()//删掉
+			delete(m.hash, front.Key)
 			m.list.PushBack(nod)
+			//不要忘记把key加到map中
+			m.hash[key] = nod
 		} else {
 			m.list.PushBack(nod)
 			//不要忘记把key加到map中
