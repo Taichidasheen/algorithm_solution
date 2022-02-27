@@ -3,6 +3,7 @@ package dp
 import "fmt"
 
 /*
+最长公共子序列
 lc-1143:https://leetcode.com/problems/longest-common-subsequence/
  */
 
