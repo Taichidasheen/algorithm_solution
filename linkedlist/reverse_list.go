@@ -17,6 +17,9 @@ func reverseLinkedList(node *ListNode) *ListNode {
 
 //recursiveReverseLinkedList 反转链表 递归方式
 func recursiveReverseLinkedList(node *ListNode) *ListNode {
+	if node == nil {
+		return nil
+	}
 	if node.Next == nil {
 		return node
 	}
