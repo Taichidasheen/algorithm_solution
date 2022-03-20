@@ -7,7 +7,7 @@ import (
 
 func TestIsSameTree(t *testing.T) {
 	t.Run("test tree seilize", func(t *testing.T) {
-		tree := conFromPreStr("124##5##36##")
+		tree := conFromPreStr("124##5##36###")
 
 		fmt.Println(dumpTreeToString(tree))
 	})
@@ -20,3 +20,16 @@ func TestGenTree(t *testing.T) {
 	fmt.Println(root.Left.Left)
 	fmt.Println(root.Right)
 }
+
+func TestLevelOrder(t *testing.T) {
+	tree := conFromPreStr("124##5##36###")
+	res := LevelOrder(tree)
+	t.Logf("res:%+v", res)
+}
+
+func TestZigLevelOrder(t *testing.T) {
+	tree := conFromPreStr("124##5##36###")
+	res := ZigLevelOrder(tree)
+	t.Logf("res:%+v", res)
+}
+

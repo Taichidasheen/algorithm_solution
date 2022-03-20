@@ -32,6 +32,74 @@ func GenTreeHelp(x []int, index *int) *TreeNode {
 	return node
 }
 
+//层序遍历
+func LevelOrder(root *TreeNode) [][]int {
+	var res [][]int
+	if root == nil {
+		return res
+	}
+	var queue []*TreeNode
+	queue = append(queue, root)
+	for len(queue)> 0 {
+		n := len(queue)
+		var level []int
+		for i:=0;i<n;i++ {
+			node := queue[i]
+			level = append(level, node.Val)
+			if node.Left != nil {
+				queue = append(queue, node.Left)
+			}
+			if node.Right != nil {
+				queue = append(queue, node.Right)
+			}
+		}
+		queue = queue[n:]
+		res = append(res, level)
+	}
+	return res
+}
+
+//Z字形层序遍历
+func ZigLevelOrder(root *TreeNode) [][]int {
+	var res [][]int
+	if root == nil {
+		return res
+	}
+	var queue []*TreeNode
+	queue = append(queue, root)
+	deep := 1
+	for len(queue)> 0 {
+		n := len(queue)
+		var level []int
+		for i:=0;i<n;i++ {
+			node := queue[i]
+			level = append(level, node.Val)
+			if node.Left != nil {
+				queue = append(queue, node.Left)
+			}
+			if node.Right != nil {
+				queue = append(queue, node.Right)
+			}
+		}
+		queue = queue[n:]
+		if deep % 2 == 0 {
+			level = reverseArr(level)
+		}
+		res = append(res, level)
+		deep ++
+	}
+	return res
+}
+
+func reverseArr(input []int) []int {
+	var output []int
+	len := len(input)
+	for i:= len-1;i>=0;i-- {
+		output = append(output, input[i])
+	}
+	return output
+}
+
 //	序列化
 func dumpTreeToString(tree *TreeNode) string {
 	var str string = ""

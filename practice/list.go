@@ -98,7 +98,7 @@ func reverseTopN(node *ListNode, n int) *ListNode {
 	return pre
 }
 
-//递归反转前n个节点
+//递归反转前n个节点(比迭代法反转要难于理解一些)
 func recursiveTopN(node *ListNode, n int) *ListNode {
 	if node == nil {
 		return node
@@ -110,6 +110,10 @@ func recursiveTopN(node *ListNode, n int) *ListNode {
 		return node
 	}
 	head := recursiveTopN(node.Next, n-1)
+	//要想象经过这一步之后，node.Next后面的节点已经是反转好的（node.Next不一定是头节点）
+	//接下来要做的就是断开node.Next和它的后继节点successor的指针，
+	//将node.Next指向当前node， 并将当前节点node指向后继节点successor
+
 	//1. 保存node.Next节点指向的下一个节点
 	successor := node.Next.Next
 	//2. 让node.Next节点指向node节点
