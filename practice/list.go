@@ -63,9 +63,10 @@ func reverseList2(node *ListNode) *ListNode {
 
 //递归反转
 func recursiveList(node *ListNode) *ListNode {
-	if node == nil {
+	//下面这个if判断不应该要，应该判断node.next
+	/*if node == nil {
 		return node
-	}
+	}*/
 	if node.Next == nil {
 		return node
 	}
@@ -100,9 +101,6 @@ func reverseTopN(node *ListNode, n int) *ListNode {
 
 //递归反转前n个节点(比迭代法反转要难于理解一些)
 func recursiveTopN(node *ListNode, n int) *ListNode {
-	if node == nil {
-		return node
-	}
 	if node.Next == nil {
 		return node
 	}

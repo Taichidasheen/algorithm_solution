@@ -2,6 +2,7 @@ package dp
 
 /*
  lc-300: https://leetcode.com/problems/longest-increasing-subsequence/
+dp[i]的定义：以nums[i]为结尾的最长递增子序列长度
  */
 
 //使用迭代方法
