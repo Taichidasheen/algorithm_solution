@@ -1,6 +1,7 @@
 package stock
 
 /*
+lc-121
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
  */
 func maxProfit(prices []int) int {

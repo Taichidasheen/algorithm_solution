@@ -32,6 +32,21 @@ func GenTreeHelp(x []int, index *int) *TreeNode {
 	return node
 }
 
+func PreOrder(root *TreeNode) []int {
+	res := []int{}
+	_preOrder(root, &res)
+	return res
+}
+
+func _preOrder(root *TreeNode, path *[]int) {
+	if root == nil {
+		return
+	}
+	*path = append(*path, root.Val)
+	_preOrder(root.Left, path)
+	_preOrder(root.Right, path)
+}
+
 //层序遍历
 func LevelOrder(root *TreeNode) [][]int {
 	var res [][]int

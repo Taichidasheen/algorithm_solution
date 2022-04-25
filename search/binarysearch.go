@@ -44,7 +44,7 @@ func binarySearchV2(nums []int, left, right int, target int) int {
 //第一种：三个数依次为target，left，right
 //第二种：三个数依次为left，right，target
 func findLowBoundIndex(nums []int, left, right int, target int) int {
-	//注意：这里left不能和right相等
+
 	for left <= right {
 		mid := (left + right)/2
 		if target > mid {
