@@ -26,7 +26,7 @@ func UnmarshalListBySlice(nums []int) *ListNode {
 	return head.Next
 }
 
-//迭代反转1
+//迭代反转1。注意：迭代方法反转链表时for结构里面只有4句，只涉及一次指针转移操作
 func reverseList1(node *ListNode) *ListNode {
 	var pre, cur *ListNode
 	cur = node
@@ -44,7 +44,7 @@ func reverseList1(node *ListNode) *ListNode {
 	return cur
 }
 
-//迭代反转2
+//迭代反转2。注意：迭代方法反转链表时for结构里面只有4句，只涉及一次指针转移操作
 func reverseList2(node *ListNode) *ListNode {
 	var pre, cur *ListNode
 	cur = node
@@ -121,7 +121,22 @@ func recursiveTopN(node *ListNode, n int) *ListNode {
 	return head
 }
 
-//反转区间内的
+//递归反转前n个节点(比迭代法反转要难于理解一些)
+//下面的方法和recursiveTopN方法的区别在于需要一个successor全局变量
+var successor *ListNode
+func recursiveTopNV2(node *ListNode, n int) *ListNode {
+	if n == 1 {
+		successor = node.Next
+		return node
+	}
+	head := recursiveTopNV2(node.Next, n-1)
+	node.Next.Next = node
+	node.Next = successor
+	return head
+}
+
+
+//反转区间内的链表
 func reverseBetween(node *ListNode, a int, b int) *ListNode {
 	if b < a {
 		return node
@@ -138,4 +153,11 @@ func reverseBetween(node *ListNode, a int, b int) *ListNode {
 	return node
 }
 
-
+//反转区间内的链表
+func reverseBetweenV2(node *ListNode, a int, b int) *ListNode {
+	if a == 1 {
+		return reverseTopN(node, b)
+	}
+	node.Next = reverseBetweenV2(node.Next, a-1, b-1)
+	return node
+}

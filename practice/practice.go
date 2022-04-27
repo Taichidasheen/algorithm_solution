@@ -55,6 +55,8 @@ func max(a,b int) int {
 }
 
 /*
+leetcode-3:
+https://leetcode.cn/problems/longest-substring-without-repeating-characters/
  无重复字符最长子串
 思路:使用滑动窗口
  */
@@ -66,17 +68,42 @@ func lengthOfLongestSubstring(s string) int {
 	for right < len(bytes) {
 		//增长窗口
 		if dup[bytes[right]] == 0 {
+			dup[bytes[right]]++//注意这里要先更新map，再++
 			right++
 			//注意这个地方，right要减去1再计算长度
 			maxLength = max(maxLength, right -1 -left + 1)
-			dup[bytes[right]]++
 			continue
 		}
 		//缩减窗口，需要用循环来做，缩减到没有重复元素
 		for dup[bytes[right]] != 0 {
-			dup[bytes[left]]--
+			dup[bytes[left]]--//注意这里要先更新map，再--
 			left ++
 		}
 	}
 	return maxLength
+}
+
+/*
+leetcode-3:
+https://leetcode.cn/problems/longest-substring-without-repeating-characters/
+同样使用滑动窗口，只是不把string转成[]byte
+ */
+func lengthOfLongestSubstringV2(s string) int {
+	dup := make(map[uint8]int)
+	length := 0
+	left := 0
+	right := 0
+	for right < len(s) {
+		if dup[s[right]] == 0 {
+			dup[s[right]] ++//注意这里要先更新map，再++
+			right ++
+			length = max(right - 1 - left + 1, length)
+		} else {
+			for dup[s[right]] != 0 {
+				dup[s[left]]--//注意这里要先更新map，再--
+				left ++
+			}
+		}
+	}
+	return length
 }

@@ -8,3 +8,53 @@
 */
 
 4. DFS和BFS可用来解决有多个选择的问题。二叉树遍历其实是一种DFS
+BFS问题的本质就是让你在一幅「图」中找到从起点start到终点target的最近距离
+BFS算法需要注意的地方：可能需要有一个visited map来记录已经访问过的情况，避免重复访问。
+最短距离问题可以抽象成BFS问题，比如求二叉树的最小深度
+又比如leetcode-752解开密码锁的最少次数，如果从一种状态变为另一种状态，中间的变化情况是可以穷举的，那么可以考虑用BFS，
+参考《BFS 算法框架套路详解》：https://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&mid=2247485134&idx=1&sn=fd345f8a93dc4444bcc65c57bb46fc35&scene=21#wechat_redirect
+参考《益智游戏克星：BFS暴力搜索算法》：https://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&mid=2247485383&idx=1&sn=4cd4b5b70e2eda33ad66562e5c007a1e&scene=21#wechat_redirect
+
+DFS算法的思想是在这一层固定一个选择之后继续做下一层的选择，而BFS的思想是先罗列出这一层的所有选择，然后再对每一种选择做下一层的选择。
+参考《DFS 算法秒杀五道岛屿问题》：https://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&mid=2247492234&idx=1&sn=fef28b1ca7639e056104374ddc9fbf0b&scene=21#wechat_redirect
+岛屿问题也可以用BFS算法求解，参考：https://leetcode.cn/problems/number-of-islands/solution/dao-yu-shu-liang-by-leetcode/
+
+5. 大多数递归问题，其实都是先序遍历结构，即先处理本层需要做的事情，再递归调用处理下一层，比如反转链表，K个一组反转链表。
+也有后续遍历结构的，比如逆序打印链表问题。
+参考《K个一组反转链表》：https://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&mid=2247484597&idx=1&sn=c603f1752e33cb2701e371d84254aee2&scene=21#wechat_redirect
+
+6. 回溯算法一般用于计算排列组合问题
+参考《回溯算法详解（修订版）》：https://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&mid=2247484709&idx=1&sn=1c24a5c41a5a255000532e83f38f2ce4&scene=21#wechat_redirect
+参考《一文秒杀排列组合问题的 9 种题型》：https://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&mid=2247496080&idx=1&sn=a2ae8c8ebf13c7ea704ffb6b16018f08&scene=21#wechat_redirect
+
+
+7. 图的问题可以理解为多叉树的遍历。统计从图中一点到另一点的路径条数的问题可以用dfs思想解决。
+DFS思想和回溯算法的思想很像，遍历的代码如下：
+/*
+DFS算法：
+void traverse(TreeNode root) {
+    if (root == null) return;
+    System.out.println("enter: " + root.val);
+    for (TreeNode child : root.children) {
+        traverse(child);
+    }
+    System.out.println("leave: " + root.val);
+}
+
+回溯算法：
+void traverse(TreeNode root) {
+    if (root == null) return;
+    for (TreeNode child : root.children) {
+        System.out.println("enter: " + child.val);
+        traverse(child);
+        System.out.println("leave: " + child.val);
+    }
+}
+*/
+区别在于DFS需要先选择一个节点之后，才知道接下来应该遍历的节点，也就是说需要有一个起点，
+而回溯算法一开始就知道要遍历的节点，可以从任意节点开始进行选择。
+参考《为什么我没写过「图」相关的算法？》：
+https://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&mid=2247491039&idx=1&sn=860d8418b3c955c1d5075cf02ee2907d&scene=21#wechat_redirect
+
+
+
