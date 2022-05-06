@@ -56,5 +56,5 @@ void traverse(TreeNode root) {
 参考《为什么我没写过「图」相关的算法？》：
 https://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&mid=2247491039&idx=1&sn=860d8418b3c955c1d5075cf02ee2907d&scene=21#wechat_redirect
 
-
+8. 推荐leetcode中的“剑指 Offer（专项突击版）”题库，该题库对问题按照类别进行了排序，可以对每一类题型做专项的突破。
 

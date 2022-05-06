@@ -1,4 +1,4 @@
-package offer
+package unionfind
 
 /*
 leetcode-剑指 Offer II 116
